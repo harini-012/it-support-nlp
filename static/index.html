@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>AI IT Support System</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            color: #222;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 40px auto;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-top: 15px;
+            margin-bottom: 6px;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            background: #2563eb;
+            color: white;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        .result {
+            display: none;
+        }
+
+        .result-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .result-item {
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 6px;
+        }
+
+        .result-item strong {
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .solution {
+            margin-top: 15px;
+            padding: 15px;
+            background: #f8fafc;
+            border-radius: 6px;
+        }
+
+        .loading {
+            display: none;
+            margin-top: 15px;
+            color: #2563eb;
+        }
+
+        .error {
+            color: #dc2626;
+            margin-top: 15px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background: #f1f5f9;
+        }
+
+        .history-button {
+            background: #475569;
+        }
+
+        @media (max-width: 700px) {
+
+            .result-grid {
+                grid-template-columns: 1fr;
+            }
+
+            table {
+                font-size: 13px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+    <h1>
+        AI-Powered IT Support Ticket System
+    </h1>
+
+    <p class="subtitle">
+        NLP-based ticket classification, priority prediction,
+        automatic team routing and troubleshooting assistance.
+    </p>
+
+
+    <!-- -------------------------------- -->
+    <!-- Ticket Input -->
+    <!-- -------------------------------- -->
+
+    <div class="card">
+
+        <h2>
+            Submit IT Support Ticket
+        </h2>
+
+        <label for="title">
+            Ticket Title
+        </label>
+
+        <input
+            type="text"
+            id="title"
+            placeholder="Example: VPN connection is not working"
+        >
+
+
+        <label for="description">
+            Ticket Description
+        </label>
+
+        <textarea
+            id="description"
+            placeholder="Describe the IT issue..."
+        ></textarea>
+
+
+        <button onclick="predictTicket()">
+            Analyze Ticket
+        </button>
+
+
+        <div
+            class="loading"
+            id="loading"
+        >
+            Analyzing ticket using NLP model...
+        </div>
+
+
+        <div
+            class="error"
+            id="error"
+        ></div>
+
+    </div>
+
+
+    <!-- -------------------------------- -->
+    <!-- Prediction Result -->
+    <!-- -------------------------------- -->
+
+    <div
+        class="card result"
+        id="result"
+    >
+
+        <h2>
+            Prediction Result
+        </h2>
+
+
+        <div class="result-grid">
+
+            <div class="result-item">
+
+                <strong>
+                    Ticket ID
+                </strong>
+
+                <span id="ticketId"></span>
+
+            </div>
+
+
+            <div class="result-item">
+
+                <strong>
+                    Category
+                </strong>
+
+                <span id="category"></span>
+
+            </div>
+
+
+            <div class="result-item">
+
+                <strong>
+                    Priority
+                </strong>
+
+                <span id="priority"></span>
+
+            </div>
+
+
+            <div class="result-item">
+
+                <strong>
+                    Assigned Team
+                </strong>
+
+                <span id="team"></span>
+
+            </div>
+
+
+            <div class="result-item">
+
+                <strong>
+                    Category Confidence
+                </strong>
+
+                <span id="categoryConfidence"></span>
+
+            </div>
+
+
+            <div class="result-item">
+
+                <strong>
+                    Priority Confidence
+                </strong>
+
+                <span id="priorityConfidence"></span>
+
+            </div>
+
+        </div>
+
+
+        <div class="solution">
+
+            <strong>
+                Suggested Solution
+            </strong>
+
+            <p id="solution"></p>
+
+        </div>
+
+    </div>
+
+
+    <!-- -------------------------------- -->
+    <!-- Ticket History -->
+    <!-- -------------------------------- -->
+
+    <div class="card">
+
+        <h2>
+            Ticket History
+        </h2>
+
+        <button
+            class="history-button"
+            onclick="loadTickets()"
+        >
+            Refresh Ticket History
+        </button>
+
+
+        <div id="history">
+
+            <p>
+                Click "Refresh Ticket History" to load saved tickets.
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+
+// ---------------------------------------
+// Submit ticket
+// ---------------------------------------
+
+async function predictTicket() {
+
+    const title =
+        document.getElementById("title").value;
+
+    const description =
+        document.getElementById("description").value;
+
+
+    const result =
+        document.getElementById("result");
+
+    const error =
+        document.getElementById("error");
+
+    const loading =
+        document.getElementById("loading");
+
+
+    result.style.display = "none";
+
+    error.textContent = "";
+
+
+    if (!title.trim()) {
+
+        error.textContent =
+            "Please enter a ticket title.";
+
+        return;
+    }
+
+
+    if (!description.trim()) {
+
+        error.textContent =
+            "Please enter a ticket description.";
+
+        return;
+    }
+
+
+    loading.style.display = "block";
+
+
+    try {
+
+        const response = await fetch(
+            "/api/predict",
+            {
+                method: "POST",
+
+                headers: {
+                    "Content-Type":
+                        "application/json"
+                },
+
+                body: JSON.stringify({
+
+                    title: title,
+
+                    description: description
+
+                })
+            }
+        );
+
+
+        const data =
+            await response.json();
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                data.detail ||
+                "Prediction failed."
+            );
+
+        }
+
+
+        const prediction =
+            data.prediction;
+
+
+        document.getElementById(
+            "ticketId"
+        ).textContent =
+            data.ticket_id;
+
+
+        document.getElementById(
+            "category"
+        ).textContent =
+            prediction.category;
+
+
+        document.getElementById(
+            "priority"
+        ).textContent =
+            prediction.priority;
+
+
+        document.getElementById(
+            "team"
+        ).textContent =
+            prediction.assigned_team;
+
+
+        document.getElementById(
+            "categoryConfidence"
+        ).textContent =
+            prediction.category_confidence
+            + "%";
+
+
+        document.getElementById(
+            "priorityConfidence"
+        ).textContent =
+            prediction.priority_confidence
+            + "%";
+
+
+        document.getElementById(
+            "solution"
+        ).textContent =
+            prediction.suggested_solution;
+
+
+        result.style.display =
+            "block";
+
+
+        // Automatically refresh history
+
+        loadTickets();
+
+
+    }
+    catch (err) {
+
+        error.textContent =
+            err.message;
+
+    }
+    finally {
+
+        loading.style.display =
+            "none";
+
+    }
+
+}
+
+
+// ---------------------------------------
+// Load ticket history
+// ---------------------------------------
+
+async function loadTickets() {
+
+    const history =
+        document.getElementById(
+            "history"
+        );
+
+
+    try {
+
+        const response =
+            await fetch(
+                "/api/tickets"
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Could not load ticket history."
+            );
+
+        }
+
+
+        const tickets =
+            data.tickets;
+
+
+        if (tickets.length === 0) {
+
+            history.innerHTML =
+                "<p>No tickets saved yet.</p>";
+
+            return;
+
+        }
+
+
+        let html = `
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>ID</th>
+
+                        <th>Title</th>
+
+                        <th>Category</th>
+
+                        <th>Priority</th>
+
+                        <th>Assigned Team</th>
+
+                        <th>Created</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+        `;
+
+
+        tickets.forEach(ticket => {
+
+            html += `
+
+                <tr>
+
+                    <td>
+                        ${ticket.id}
+                    </td>
+
+                    <td>
+                        ${ticket.title}
+                    </td>
+
+                    <td>
+                        ${ticket.category}
+                    </td>
+
+                    <td>
+                        ${ticket.priority}
+                    </td>
+
+                    <td>
+                        ${ticket.assigned_team}
+                    </td>
+
+                    <td>
+                        ${new Date(
+                            ticket.created_at
+                        ).toLocaleString()}
+                    </td>
+
+                </tr>
+
+            `;
+
+        });
+
+
+        html += `
+
+                </tbody>
+
+            </table>
+
+        `;
+
+
+        history.innerHTML =
+            html;
+
+
+    }
+    catch (err) {
+
+        history.innerHTML =
+            `<p class="error">
+                ${err.message}
+            </p>`;
+
+    }
+
+}
+
+
+</script>
+
+</body>
+
+</html>

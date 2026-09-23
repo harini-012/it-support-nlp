@@ -1,0 +1,82 @@
+title,description,category,priority
+Internet not working,My laptop cannot connect to the office WiFi,Network,High
+VPN connection failed,I cannot connect to company VPN from home,Network,High
+Slow internet,Internet connection is extremely slow,Network,Medium
+WiFi disconnected,Office WiFi keeps disconnecting,Network,Medium
+Router problem,Office router is not working correctly,Network,High
+Network cable issue,My ethernet cable is not connecting,Network,Medium
+DNS problem,The internet is not working because DNS fails,Network,High
+Network outage,The entire office network is unavailable,Network,Critical
+VPN authentication issue,VPN authentication keeps failing,Network,High
+Internet unavailable,The office internet connection is down,Network,Critical
+Laptop overheating,My laptop becomes very hot and shuts down,Hardware,High
+Keyboard not working,Some keys on my laptop keyboard are not working,Hardware,Medium
+Monitor not working,External monitor shows no display,Hardware,Medium
+Laptop battery issue,Laptop battery drains very quickly,Hardware,Medium
+Laptop screen broken,My laptop screen is damaged,Hardware,High
+Mouse not working,My USB mouse is not working,Hardware,Low
+Printer not working,The office printer does not print,Hardware,Medium
+Hard drive failure,My laptop hard drive is failing,Hardware,Critical
+Laptop camera broken,The webcam is not working,Hardware,Medium
+Laptop power issue,My laptop does not turn on,Hardware,Critical
+Application crashing,The application crashes whenever I open it,Software,High
+Software installation,Please install Python on my laptop,Software,Low
+Windows update failed,Windows update keeps failing,Software,Medium
+Excel not opening,Microsoft Excel does not open,Software,Medium
+Browser problem,Chrome browser keeps crashing,Software,Medium
+Software license,My software license has expired,Software,Low
+Application freezing,The software freezes after startup,Software,High
+Driver update,Please update the laptop software driver,Software,Low
+Operating system error,Windows shows an operating system error,Software,High
+Program not responding,The program is not responding,Software,High
+Database connection failed,Application cannot connect to database,Database,Critical
+Database slow,Database queries are taking too long,Database,High
+SQL error,SQL query is returning an unexpected error,Database,High
+Database timeout,Database requests are timing out,Database,High
+Database unavailable,The production database is unavailable,Database,Critical
+Database performance,Database performance is very slow,Database,High
+Database backup failed,The database backup job failed,Database,Critical
+SQL connection issue,The SQL server connection is failing,Database,High
+Database storage full,Database storage has reached capacity,Database,Critical
+Password reset,I forgot my company password,Access,Medium
+Account locked,My company account has been locked,Access,High
+Permission denied,I cannot access the shared folder,Access,Medium
+Access request,I need permission to access a company system,Access,Medium
+User authentication failed,I cannot authenticate into the company system,Access,High
+Account password expired,My company password has expired,Access,Medium
+Shared drive access,I cannot open the shared drive,Access,Medium
+User account disabled,My company account is disabled,Access,High
+Login permission issue,I do not have permission to log in,Access,High
+Suspicious email,I received a suspicious email,Security,Critical
+Malware alert,My antivirus detected malware,Security,Critical
+Phishing attempt,I clicked a suspicious phishing link,Security,Critical
+Security warning,My computer shows a security warning,Security,High
+Virus detected,A virus was detected on my computer,Security,Critical
+Ransomware alert,The endpoint shows a ransomware warning,Security,Critical
+Suspicious attachment,I opened a suspicious attachment,Security,Critical
+Security incident,There may be a security incident on my laptop,Security,Critical
+Endpoint protection,Antivirus protection is not running,Security,High
+Application access,I need access to the HR application,Application,Medium
+Application error,The internal application is showing an error,Application,High
+Application unavailable,The company application is unavailable,Application,High
+Application login issue,I cannot login to the internal application,Application,High
+Application performance,The internal application is very slow,Application,Medium
+Application timeout,The internal application keeps timing out,Application,High
+Internal portal error,The company portal displays an error,Application,High
+Application service down,The application service is down,Application,Critical
+Email not working,I cannot send or receive company emails,Email,High
+Mailbox full,My mailbox storage is full,Email,Medium
+Email password,My email password is not working,Email,High
+Email delivery failure,Emails are not being delivered,Email,High
+Email attachment issue,I cannot send email attachments,Email,Medium
+Email synchronization,My mailbox is not synchronizing,Email,Medium
+Email server issue,The company email server is unavailable,Email,Critical
+Email spam problem,My inbox is receiving too much spam,Email,Low
+Cloud service unavailable,Our cloud application is unavailable,Cloud,Critical
+Cloud deployment failed,Cloud deployment is failing,Cloud,High
+Cloud performance,Cloud application is running slowly,Cloud,Medium
+Cloud login,Unable to login to the cloud platform,Cloud,High
+Cloud outage,The company cloud service is down,Cloud,Critical
+Cloud configuration,The cloud service configuration is incorrect,Cloud,Medium
+Cloud storage issue,The cloud storage service is unavailable,Cloud,High
+Cloud resource error,The cloud resource deployment failed,Cloud,High

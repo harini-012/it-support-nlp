@@ -1,0 +1,15 @@
+              precision    recall  f1-score   support
+
+      Access       0.67      1.00      0.80         2
+ Application       1.00      0.50      0.67         2
+       Cloud       0.67      1.00      0.80         2
+    Database       0.50      1.00      0.67         2
+       Email       0.00      0.00      0.00         2
+    Hardware       0.50      1.00      0.67         3
+     Network       1.00      0.33      0.50         3
+    Security       1.00      1.00      1.00         2
+    Software       0.00      0.00      0.00         3
+
+    accuracy                           0.62        21
+   macro avg       0.59      0.65      0.57        21
+weighted avg       0.58      0.62      0.54        21
